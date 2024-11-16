@@ -3,13 +3,8 @@ package simpleProject1.controller;
 import simpleProject1.Model.dao.UserDao;
 import simpleProject1.Model.dto.MessageContext;
 import simpleProject1.Model.dto.User;
-import simpleProject1.view.MainView;
-import simpleProject1.view.UserView;
-
-import java.util.Scanner;
-
 public class UserController {
-    private UserDao userDao = UserDao.getInstance();
+    private final UserDao userDao = UserDao.getInstance();
 
     /**
      * signUp
@@ -39,7 +34,7 @@ public class UserController {
      * @return
      */
     public Boolean logout(){
-        UserView.user = null;
+        userDao.user = null;
         return true;
     }
 
@@ -58,5 +53,13 @@ public class UserController {
      */
     public boolean checkId(String id) {
         return userDao.checkId(id);
+    }
+
+    /**
+     * getUserName
+     * @return
+     */
+    public User getUser() {
+        return userDao.user;
     }
 }

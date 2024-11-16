@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserDao {
-    private static UserDao userDao = new UserDao();
+    private static final UserDao userDao = new UserDao();
 
     public UserDao() {
     }
@@ -16,6 +16,7 @@ public class UserDao {
         return userDao;
     }
     public List<User> users = new ArrayList<>();
+    public User user = new User();
 
     /**
      * addUser
@@ -34,7 +35,8 @@ public class UserDao {
     public Boolean checkUser(String id, String password) {
         for (User user : users) {
             if (user.checkUser(id, password)){
-                UserView.user = user;
+                userDao.user = user;
+                System.out.println(userDao.user);
                 return true;
             }
         }

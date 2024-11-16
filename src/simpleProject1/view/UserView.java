@@ -1,6 +1,6 @@
 package simpleProject1.view;
 
-import simpleProject1.Model.dao.UserDao;
+import simpleProject1.Model.dto.MessageContext;
 import simpleProject1.Model.dto.User;
 import simpleProject1.controller.UserController;
 
@@ -9,7 +9,6 @@ import java.util.Scanner;
 public class UserView {
     public Scanner sc = new Scanner(System.in);
     public UserController userController = new UserController();
-    public static User user = new User();
 
     /**
      * sign up
@@ -20,7 +19,7 @@ public class UserView {
             System.out.println("Enter id: ");
             String id = sc.nextLine();
             if (!userController.checkId(id)) {
-                System.out.println("You are already registered!");
+                System.out.println(MessageContext.USER_ALREADY);
                 continue;
             }
             System.out.println("Enter password: ");
@@ -45,11 +44,10 @@ public class UserView {
         String password = sc.nextLine();
 
         if (userController.login(id, password)) {
-            System.out.println("Welcome " + user.getName() + "!");
-            System.out.println("You have successfully logged in!");
+            System.out.println(MessageContext.LOGIN_SUCCESS);
             return true;
         }
-        System.out.println("You have not successfully logged in!");
+        System.out.println(MessageContext.LOGIN_ERROR);
         return false;
 
     }
